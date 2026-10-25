@@ -1,17 +1,31 @@
-# vetcare
+# VetCare 🐾
 
-A new Flutter project.
+VetCare is a modern veterinary clinic mobile application built with Flutter, designed to simplify pet healthcare and improve the experience of pet owners. The app provides a centralized platform for discovering veterinary clinics, booking appointments, communicating with veterinarians, managing pet health records, and shopping for pet-care products.
 
-## Getting Started
+## 🎨 System Design
+<img width="1200" height="900" alt="image" src="https://github.com/user-attachments/assets/2de515e1-7538-46d4-90da-0288bc1315ab" />
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Features
+- 🏥 Discover veterinary clinics and explore available services.
+- 📅 Book, manage, and track veterinary appointments.
+- 💬 Communicate with veterinarians through in-app messaging.
+- 🐶 Manage pet profiles and health information.
+- 💉 Track vaccination history and medical records.
+- 🛍️ Browse and shop for pet-care products.
+- 🔔 Receive appointment reminders and notifications.
+- 👤 Manage user profiles and application settings.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## 🛠️ Tech Stack
+- **Framework:** Flutter
+- **Language:** Dart
+- **Architecture:** Modular, maintainable application structure
+- **State Management:** BLoC/Cubit
+- **Backend:** Supabase
+  
+## 🎯 Goal
+The goal of VetCare is to make veterinary services more accessible, organize pet healthcare, and provide pet owners with a convenient, user-friendly digital experience.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+**VetCare — Better Care for Every Paw.** 🐾
