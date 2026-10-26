@@ -3,7 +3,8 @@
 VetCare is a modern veterinary clinic mobile application built with Flutter, designed to simplify pet healthcare and improve the experience of pet owners. The app provides a centralized platform for discovering veterinary clinics, booking appointments, communicating with veterinarians, managing pet health records, and shopping for pet-care products.
 
 ## 🎨 System Design
-<img width="1200" height="900" alt="image" src="https://github.com/user-attachments/assets/2de515e1-7538-46d4-90da-0288bc1315ab" />
+<img width="1200" height="900" alt="image" src="https://github.com/user-attachments/assets/85f10064-ca0e-4748-91f4-b44132fcf136" />
+
 
 
 ## ✨ Features
