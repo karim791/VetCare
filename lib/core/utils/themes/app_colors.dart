@@ -7,4 +7,6 @@ class AppColors {
   static const Color offWhite = Color(0xFFF8FAF9);
   static const Color darkCharcoal = Color(0xFF243333);
   static const Color mutedGray = Color(0xFF7B8787);
+  static const Color ligntGray = Color(0xFF6D827F);
+
 }

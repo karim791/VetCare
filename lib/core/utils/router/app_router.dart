@@ -3,7 +3,7 @@ import 'package:vetcare/core/utils/router/app_routes.dart';
 import 'package:vetcare/features/home/views/pages/home_page.dart';
 import 'package:vetcare/features/inbox/views/pages/inbox_page.dart';
 import 'package:vetcare/features/login/views/pages/login_page.dart';
-import 'package:vetcare/features/onboarding/onboarding_page.dart';
+import 'package:vetcare/features/onboarding/views/pages/onboarding_page.dart';
 import 'package:vetcare/features/profile/views/pages/profile_page.dart';
 import 'package:vetcare/features/shop/views/pages/shop_page.dart';
 import 'package:vetcare/features/visits/views/pages/visits_page.dart';
