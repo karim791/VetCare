@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vetcare/core/utils/router/app_routes.dart';
+import 'package:vetcare/features/auth/views/pages/sign_up_page.dart';
 import 'package:vetcare/features/home/views/pages/home_page.dart';
 import 'package:vetcare/features/inbox/views/pages/inbox_page.dart';
-import 'package:vetcare/features/login/views/pages/login_page.dart';
+import 'package:vetcare/features/auth/views/pages/login_page.dart';
 import 'package:vetcare/features/onboarding/views/pages/onboarding_page.dart';
 import 'package:vetcare/features/profile/views/pages/profile_page.dart';
 import 'package:vetcare/features/shop/views/pages/shop_page.dart';
@@ -15,6 +16,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
       case AppRoutes.loginPage:
         return MaterialPageRoute(builder: (_) => LoginPage());
+      case AppRoutes.signUpPage:
+        return MaterialPageRoute(builder: (_) => SignUpPage());
       case AppRoutes.homePage:
         return MaterialPageRoute(builder: (_) => HomePage());
       case AppRoutes.profilePage:

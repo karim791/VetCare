@@ -17,7 +17,7 @@ class VetCareApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: AppColors.deepGreen,
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: AppColors.background,
         ),
         title: 'VetCare',
         initialRoute: AppRoutes.onBoardingPage,
