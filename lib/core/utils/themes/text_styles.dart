@@ -19,6 +19,11 @@ class TextStyles {
     color: AppColors.darkGreen,
     fontWeight: FontWeightHelper.bold,
   );
+  static TextStyle font22DarkGreenBold = TextStyle(
+    fontSize: 22.sp,
+    color: AppColors.darkGreen,
+    fontWeight: FontWeightHelper.bold,
+  );
   static TextStyle font20WhiteSemiBold = TextStyle(
     fontSize: 20.sp,
     color: Colors.white,

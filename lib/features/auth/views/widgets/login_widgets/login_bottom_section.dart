@@ -66,7 +66,7 @@ class BottomSection extends StatelessWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    context.pushNamed(AppRoutes.signUpPage);
+                    context.pushAndRemoveUntil(AppRoutes.signUpPage);
                   },
               ),
             ],
