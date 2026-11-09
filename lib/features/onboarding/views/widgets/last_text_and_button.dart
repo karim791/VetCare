@@ -15,13 +15,13 @@ class LastTextAndButton extends StatelessWidget {
       children: [
         Text(
           'Discover trusted veterinary clinics and connect with the right care team for your best friend.',
-          style: TextStyles.font14LigtGrayRegular,
+          style: TextStyles.font14LightGrayRegular,
         ),
         verticalSpace(50.h),
         MainButton(
           buttonText: 'Get Started',
           textStyle: TextStyles.font20WhiteSemiBold,
-          onPressed: () => context.pushReplacementNamed(AppRoutes.homePage),
+          onPressed: () => context.pushNamed(AppRoutes.loginPage),
         ),
       ],
     );
