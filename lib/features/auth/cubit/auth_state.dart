@@ -1,26 +1,20 @@
-part of 'auth_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-sealed class AuthState {
-  const AuthState();
-}
+part 'auth_state.freezed.dart';
 
-final class AuthInitial extends AuthState {}
-
-final class AuthLoading extends AuthState {}
-
-final class AuthSuccess extends AuthState {}
-
-final class AuthFailure extends AuthState {
-  final String message;
-  const AuthFailure(this.message);
-}
-
-///Sign out states
-final class SignOutLoading extends AuthState {}
-
-final class SignOutSuccess extends AuthState {}
-
-final class SignOutFailure extends AuthState {
-  final String message;
-  const SignOutFailure(this.message);
+@freezed
+class AuthState with _$AuthState {
+  const factory AuthState.initial() = _AuthInitial;
+  ///Login States
+  const factory AuthState.loginLoading() = LoginLoading;
+  const factory AuthState.loginsuccess() = LoginSuccess;
+  const factory AuthState.loginFailure(String message) = LoginFailure;
+  ///SignUp States
+  const factory AuthState.signUpLoading() = SignUpLoading;
+  const factory AuthState.signUpSuccess() = SignUpSuccess;
+  const factory AuthState.signUpFailure(String message) = SignUpFailure;
+  ///SignOut States
+  const factory AuthState.signOutLoading() = SignOutLoading;
+  const factory AuthState.signOutSuccess() = SignOutSuccess;
+  const factory AuthState.signOutFailure(String message) = SignOutFailure;
 }

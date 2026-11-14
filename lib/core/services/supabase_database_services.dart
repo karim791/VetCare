@@ -2,12 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseDatabaseServices {
-  // Singleton pattern to ensure a single instance
-  SupabaseDatabaseServices._();
-  static final instance = SupabaseDatabaseServices._();
+  final SupabaseClient _db;
 
-  /// Internal Supabase client reference
-  SupabaseClient get _db => Supabase.instance.client;
+  SupabaseDatabaseServices({
+    required SupabaseClient supabaseClient,
+  }) : _db = supabaseClient;
 
   // ------------------
   // Write operations
@@ -243,7 +242,7 @@ Future<int> rowsCount({
     required dynamic value,
   }) async {
     try {
-      final count = await Supabase.instance.client
+      final count = await _db
           .from(table)
           .select('*')
           .eq(column, value)
