@@ -9,6 +9,9 @@ import 'package:vetcare/core/utils/themes/text_styles.dart';
 import 'package:vetcare/core/views/widgets/general_text_field.dart';
 import 'package:vetcare/core/views/widgets/main_button.dart';
 import 'package:vetcare/features/auth/cubit/auth_cubit.dart';
+import 'package:vetcare/features/auth/cubit/auth_state.dart';
+
+import '../../../../../core/helpers/app_regex.dart';
 
 class TextFieldsWithButton extends StatefulWidget {
   const TextFieldsWithButton({super.key});
@@ -42,7 +45,9 @@ class _TextFieldsWithButtonState extends State<TextFieldsWithButton> {
             hintText: 'Email',
             controller: emailController,
             validator: (value) {
-              if (value == null || value.isEmpty) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isEmailValid(value)) {
                 return 'Please enter your email';
               }
             },
@@ -67,7 +72,9 @@ class _TextFieldsWithButtonState extends State<TextFieldsWithButton> {
               ),
             ),
             validator: (value) {
-              if (value == null || value.isEmpty) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isPasswordValid(value)) {
                 return 'Please enter your password';
               }
             },
@@ -90,30 +97,69 @@ class _TextFieldsWithButtonState extends State<TextFieldsWithButton> {
           BlocListener<AuthCubit, AuthState>(
             bloc: authCubit,
             listenWhen: (previous, current) =>
-                current is AuthFailure ||
-                current is AuthSuccess ||
-                current is AuthLoading,
+                current is LoginFailure ||
+                current is LoginSuccess ||
+                current is LoginLoading,
             listener: (context, state) {
-              if (state is AuthLoading) {
-                showDialog(
-                  context: context,
-                  builder: (context) => const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.deepGreen,
+              state.whenOrNull(
+                loginLoading: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.deepGreen,
+                      ),
                     ),
-                  ),
-                );
-              } else if (state is AuthSuccess) {
-                context.pop();
-                context.pushReplacementNamed(AppRoutes.homePage);
-              } else if (state is AuthFailure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.message),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              }
+                  );
+                },
+                loginsuccess: () {
+                  context.pop();
+                  context.pushAndRemoveUntil(AppRoutes.homePage);
+                },
+                loginFailure: (message) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      icon: Icon(Icons.error, color: Colors.red, size: 32.h),
+                      content: Text(
+                        message,
+                        style: TextStyles.font14DarkGreenMedium,
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => context.pop(),
+                          child: Text(
+                            'Got It',
+                            style: TextStyles.font14LightGrayRegular,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                  context.pop();
+                },
+              );
+
+              // if (state is AuthLoading) {
+              //   showDialog(
+              //     context: context,
+              //     builder: (context) => const Center(
+              //       child: CircularProgressIndicator(
+              //         color: AppColors.deepGreen,
+              //       ),
+              //     ),
+              //   );
+              // } else if (state is AuthSuccess) {
+              //   context.pop();
+              //   context.pushReplacementNamed(AppRoutes.homePage);
+              // } else if (state is AuthFailure) {
+              //   ScaffoldMessenger.of(context).showSnackBar(
+              //     SnackBar(
+              //       content: Text(state.message),
+              //       backgroundColor: Colors.red,
+              //     ),
+              //   );
+              // }
             },
             child: MainButton(
               buttonText: 'Sign In',

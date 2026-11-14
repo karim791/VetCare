@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vetcare/core/di/dependency_injection.dart';
 import 'package:vetcare/core/utils/router/app_routes.dart';
+import 'package:vetcare/features/auth/cubit/auth_cubit.dart';
 import 'package:vetcare/features/auth/views/pages/sign_up_page.dart';
 import 'package:vetcare/features/home/views/pages/home_page.dart';
 import 'package:vetcare/features/inbox/views/pages/inbox_page.dart';
@@ -10,14 +13,24 @@ import 'package:vetcare/features/shop/views/pages/shop_page.dart';
 import 'package:vetcare/features/visits/views/pages/visits_page.dart';
 
 class AppRouter {
-  static Route<dynamic> onGenerateRoutes(RouteSettings settings) {
+  Route<dynamic>? onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.onBoardingPage:
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
       case AppRoutes.loginPage:
-        return MaterialPageRoute(builder: (_) => LoginPage());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<AuthCubit>(),
+            child: const LoginPage(),
+          ),
+        );
       case AppRoutes.signUpPage:
-        return MaterialPageRoute(builder: (_) => SignUpPage());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>getIt<AuthCubit>(),
+            child:const SignUpPage(),
+          ),
+        );
       case AppRoutes.homePage:
         return MaterialPageRoute(builder: (_) => HomePage());
       case AppRoutes.profilePage:
@@ -29,13 +42,7 @@ class AppRouter {
       case AppRoutes.visitsPage:
         return MaterialPageRoute(builder: (_) => VisitsPage());
       default:
-        return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route defined for ${settings.name}'),
-            ),
-          ),
-        );
+        return null;
     }
   }
 }

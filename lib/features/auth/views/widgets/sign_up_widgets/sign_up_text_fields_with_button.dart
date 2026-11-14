@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vetcare/core/helpers/app_regex.dart';
 import 'package:vetcare/core/helpers/extension.dart';
 import 'package:vetcare/core/helpers/spacing.dart';
 import 'package:vetcare/core/utils/router/app_routes.dart';
@@ -9,6 +10,8 @@ import 'package:vetcare/core/utils/themes/text_styles.dart';
 import 'package:vetcare/core/views/widgets/general_text_field.dart';
 import 'package:vetcare/core/views/widgets/main_button.dart';
 import 'package:vetcare/features/auth/cubit/auth_cubit.dart';
+import 'package:vetcare/features/auth/cubit/auth_state.dart';
+import 'package:vetcare/features/auth/views/widgets/sign_up_widgets/password_validation.dart';
 
 class SignUpTextFieldsWithButton extends StatefulWidget {
   const SignUpTextFieldsWithButton({super.key});
@@ -26,6 +29,40 @@ class _SignUpTextFieldsWithButtonState
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  bool isObscureText = true;
+  bool isObscureText2 = true;
+
+  bool hasLowerCase = false;
+  bool hasUpperCase = false;
+  bool hasNumber = false;
+  bool hasSpecialChar = false;
+  bool hasMinLength = false;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordController.addListener(() {
+      final password = passwordController.text;
+      setState(() {
+        hasLowerCase = AppRegex.hasLowerCase(password);
+        hasUpperCase = AppRegex.hasUpperCase(password);
+        hasNumber = AppRegex.hasNumber(password);
+        hasSpecialChar = AppRegex.hasSpecialCharacter(password);
+        hasMinLength = AppRegex.hasMinLength(password);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    passwordController.removeListener(() {});
+    fullNameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
@@ -61,8 +98,10 @@ class _SignUpTextFieldsWithButtonState
             hintText: 'Email',
             controller: emailController,
             validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email';
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isEmailValid(value)) {
+                return 'Please enter a valid email';
               }
             },
           ),
@@ -72,11 +111,13 @@ class _SignUpTextFieldsWithButtonState
             child: Text('Phone', style: TextStyles.font14DarkGreenMedium),
           ),
           GeneralTextField(
-            hintText: '(555) 000-0000',
+            hintText: '(01) 000-0000',
             controller: phoneController,
             validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your phone number';
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isPhoneNumberValid(value)) {
+                return 'Please enter a valid phone number';
               }
             },
           ),
@@ -87,11 +128,21 @@ class _SignUpTextFieldsWithButtonState
           ),
           GeneralTextField(
             hintText: 'Password',
-            isObscureText: true,
+            isObscureText: isObscureText,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isObscureText = !isObscureText;
+                });
+              },
+              child: Icon(
+                isObscureText ? Icons.visibility_off : Icons.visibility,
+              ),
+            ),
             controller: passwordController,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your password';
+                return 'Please enter a valid password';
               }
             },
           ),
@@ -105,46 +156,106 @@ class _SignUpTextFieldsWithButtonState
           ),
           GeneralTextField(
             hintText: 'Confirm Password',
+            isObscureText: isObscureText2,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isObscureText2 = !isObscureText2;
+                });
+              },
+              child: Icon(
+                isObscureText2 ? Icons.visibility_off : Icons.visibility,
+              ),
+            ),
             controller: confirmPasswordController,
-            isObscureText: true,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your password';
-              } else if (value != passwordController.text) {
-                return 'Password does not match';
+                return 'Password don\'t match';
               }
             },
+          ),
+          verticalSpace(20.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+            child: Text(
+              'PassWord Validation',
+              style: TextStyles.font14DarkGreenMedium,
+            ),
+          ),
+          PasswordValidation(
+            hasLowerCase: hasLowerCase,
+            hasUpperCase: hasUpperCase,
+            hasNumber: hasNumber,
+            hasSpecialChar: hasSpecialChar,
+            hasMinLength: hasMinLength,
           ),
 
           verticalSpace(20.h),
           BlocListener<AuthCubit, AuthState>(
             bloc: authCubit,
             listenWhen: (previous, current) =>
-                current is AuthFailure ||
-                current is AuthSuccess ||
-                current is AuthLoading,
+                current is SignUpFailure ||
+                current is SignUpSuccess ||
+                current is SignUpLoading,
             listener: (context, state) {
-              if (state is AuthLoading) {
-                showDialog(
-                  context: context,
-                  builder: (context) => const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.deepGreen,
+              state.whenOrNull(
+                signUpLoading: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.deepGreen,
+                      ),
                     ),
-                  ),
-                );
-              } else if (state is AuthSuccess) {
-                context.pop();
-                context.pushReplacementNamed(AppRoutes.homePage);
-              } else if (state is AuthFailure) {
-                context.pop();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.message),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              }
+                  );
+                },
+                signUpSuccess: () {
+                  context.pop();
+                  context.pushAndRemoveUntil(AppRoutes.homePage);
+                },
+                signUpFailure: (message) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      icon: Icon(Icons.error, color: Colors.red, size: 32.h),
+                      content: Text(
+                        message,
+                        style: TextStyles.font14DarkGreenMedium,
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => context.pop(),
+                          child: Text(
+                            'Got It',
+                            style: TextStyles.font14LightGrayRegular,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+
+              // if (state is AuthLoading) {
+              //   showDialog(
+              //     context: context,
+              //     builder: (context) => const Center(
+              //       child: CircularProgressIndicator(
+              //         color: AppColors.deepGreen,
+              //       ),
+              //     ),
+              //   );
+              // } else if (state is AuthSuccess) {
+              //   context.pop();
+              //   context.pushReplacementNamed(AppRoutes.homePage);
+              // } else if (state is AuthFailure) {
+              //   ScaffoldMessenger.of(context).showSnackBar(
+              //     SnackBar(
+              //       content: Text(state.message),
+              //       backgroundColor: Colors.red,
+              //     ),
+              //   );
+              // }
             },
             child: MainButton(
               buttonText: 'Sign Up',
