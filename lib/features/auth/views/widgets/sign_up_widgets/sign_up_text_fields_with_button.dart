@@ -235,27 +235,6 @@ class _SignUpTextFieldsWithButtonState
                   );
                 },
               );
-
-              // if (state is AuthLoading) {
-              //   showDialog(
-              //     context: context,
-              //     builder: (context) => const Center(
-              //       child: CircularProgressIndicator(
-              //         color: AppColors.deepGreen,
-              //       ),
-              //     ),
-              //   );
-              // } else if (state is AuthSuccess) {
-              //   context.pop();
-              //   context.pushReplacementNamed(AppRoutes.homePage);
-              // } else if (state is AuthFailure) {
-              //   ScaffoldMessenger.of(context).showSnackBar(
-              //     SnackBar(
-              //       content: Text(state.message),
-              //       backgroundColor: Colors.red,
-              //     ),
-              //   );
-              // }
             },
             child: MainButton(
               buttonText: 'Sign Up',
