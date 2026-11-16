@@ -42,30 +42,6 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  // Future<void> signUpWithEmailAndPassword( {
-  //   required String email,
-  //   required String password,
-  //   required String fullName,
-  //   required String phoneNumber,}) async {
-  //   emit(AuthLoading());
-  //   try {
-  //     await _authServices.signUpWithEmailAndPassword(
-  //       email: email,
-  //       password: password,
-  //       fullName: fullName,
-  //       phoneNumber: phoneNumber,
-  //     );
-  //     await _authServices.setUserData(
-  //       userId: _authServices.isSignedIn()!.id,
-  //       fullName: fullName,
-  //       email: email,
-  //       phoneNumber: phoneNumber,
-  //     );
-  //     emit(AuthSuccess());
-  //   } catch (e) {
-  //     emit(AuthFailure(e.toString()));
-  //   }
-  // }
 
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     emit(AuthState.loginLoading());
@@ -81,18 +57,6 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  // Future<void> signInWithEmailAndPassword(String email, String password) async {
-  //   emit(AuthLoading());
-  //   try {
-  //     await _authServices.signInWithEmailAndPassword(
-  //       email: email,
-  //       password: password,
-  //     );
-  //     emit(AuthSuccess());
-  //   } catch (e) {
-  //     emit(AuthFailure(e.toString()));
-  //   }
-  // }
 
   Future<void> signOut() async {
     emit(AuthState.signOutLoading());
@@ -104,16 +68,6 @@ class AuthCubit extends Cubit<AuthState> {
       failure: (error) => emit(AuthState.signOutFailure(error.message)),
     );
   }
-
-  // Future<void> signOut() async {
-  //   emit(SignOutLoading());
-  //   try {
-  //     await _authServices.signOut();
-  //     emit(SignOutSuccess());
-  //   } catch (e) {
-  //     emit(SignOutFailure(e.toString()));
-  //   }
-  // }
 
   void checkAuth() {
     final isSigned = _authServices.isSignedIn();

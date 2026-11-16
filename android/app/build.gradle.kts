@@ -25,6 +25,25 @@ android {
         versionName = flutter.versionName
     }
 
+  buildFeatures {
+        resValues = true
+    }
+
+    flavorDimensions += "default"
+
+    productFlavors {
+        create("dev") {
+            dimension = "default"
+            applicationIdSuffix = ".dev"
+            resValue("string", "app_name", "VetCare Dev")
+        }
+
+        create("prod") {
+            dimension = "default"
+            resValue("string", "app_name", "VetCare")
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
@@ -34,6 +53,7 @@ android {
     }
 }
 
+    
 kotlin {
     compilerOptions {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
