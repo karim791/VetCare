@@ -39,6 +39,16 @@ class TextStyles {
     color: AppColors.deepGreen,
     fontWeight: FontWeightHelper.bold,
   );
+  static TextStyle font16WhiteRegular = TextStyle(
+    fontSize: 16.sp,
+    color: Colors.white,
+    fontWeight: FontWeightHelper.regular,
+  );
+    static TextStyle font16WhiteMedium = TextStyle(
+    fontSize: 16.sp,
+    color: Colors.white,
+    fontWeight: FontWeightHelper.medium,
+  );
   static TextStyle font14LightGrayRegular = TextStyle(
     fontSize: 14.sp,
     color: AppColors.lightGrey,
@@ -49,9 +59,14 @@ class TextStyles {
     color: AppColors.darkGreen,
     fontWeight: FontWeightHelper.medium,
   );
-  static TextStyle font16WhiteRegular = TextStyle(
-    fontSize: 16.sp,
+  static TextStyle font14WhiteMedium = TextStyle(
+    fontSize: 14.sp,
     color: Colors.white,
-    fontWeight: FontWeightHelper.regular,
+    fontWeight: FontWeightHelper.medium,
+  );
+  static TextStyle font14WhiteLight = TextStyle(
+    fontSize: 14.sp,
+    color: Colors.white,
+    fontWeight: FontWeightHelper.light,
   );
 }
