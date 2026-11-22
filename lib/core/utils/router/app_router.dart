@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vetcare/core/di/dependency_injection.dart';
 import 'package:vetcare/core/utils/router/app_routes.dart';
+import 'package:vetcare/core/views/pages/bottom_nav_bar.dart';
 import 'package:vetcare/features/auth/cubit/auth_cubit.dart';
 import 'package:vetcare/features/auth/views/pages/sign_up_page.dart';
 import 'package:vetcare/features/home/views/pages/home_page.dart';
@@ -31,6 +32,8 @@ class AppRouter {
             child:const SignUpPage(),
           ),
         );
+      case AppRoutes.bottomNav:
+        return MaterialPageRoute(builder: (_) => BottomNavBar());
       case AppRoutes.homePage:
         return MaterialPageRoute(builder: (_) => HomePage());
       case AppRoutes.profilePage:
