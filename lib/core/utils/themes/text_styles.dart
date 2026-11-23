@@ -29,6 +29,11 @@ class TextStyles {
     color: AppColors.darkGreen,
     fontWeight: FontWeightHelper.bold,
   );
+  static TextStyle font22DeepGreenBold = TextStyle(
+    fontSize: 22.sp,
+    color: AppColors.deepGreen,
+    fontWeight: FontWeightHelper.bold,
+  );
   static TextStyle font20DarkGreenSemiBold = TextStyle(
     fontSize: 20.sp,
     color: AppColors.darkGreen,
@@ -37,6 +42,11 @@ class TextStyles {
   static TextStyle font20WhiteSemiBold = TextStyle(
     fontSize: 20.sp,
     color: Colors.white,
+    fontWeight: FontWeightHelper.semiBold,
+  );
+  static TextStyle font18DarkGreenSemiBold = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.darkGreen,
     fontWeight: FontWeightHelper.semiBold,
   );
   static TextStyle font16DeepGreenBold = TextStyle(
@@ -52,6 +62,11 @@ class TextStyles {
   static TextStyle font16WhiteMedium = TextStyle(
     fontSize: 16.sp,
     color: Colors.white,
+    fontWeight: FontWeightHelper.medium,
+  );
+  static TextStyle font16BlackMedium = TextStyle(
+    fontSize: 16.sp,
+    color: Colors.black,
     fontWeight: FontWeightHelper.medium,
   );
   static TextStyle font14LightGrayRegular = TextStyle(
@@ -73,5 +88,20 @@ class TextStyles {
     fontSize: 14.sp,
     color: Colors.white,
     fontWeight: FontWeightHelper.light,
+  );
+  static TextStyle font14BlackMedium = TextStyle(
+    fontSize: 14.sp,
+    color: Colors.black,
+    fontWeight: FontWeightHelper.medium,
+  );
+  static TextStyle font14GreenBold = TextStyle(
+    fontSize: 14.sp,
+    color: Colors.green,
+    fontWeight: FontWeightHelper.bold,
+  );
+  static TextStyle font12GreenRegular = TextStyle(
+    fontSize: 12.sp,
+    color: Colors.green,
+    fontWeight: FontWeightHelper.regular,
   );
 }

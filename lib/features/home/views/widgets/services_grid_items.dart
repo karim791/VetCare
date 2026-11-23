@@ -56,23 +56,21 @@ class ServicesGridItems extends StatelessWidget {
   }
 
   Widget gridItem(IconData icon, String text, Color color) {
-    return Expanded(
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: color,
-            child: Icon(icon, color: AppColors.deepGreen),
-          ),
-          horizontalSpace(3.w),
-          Text(text, style: TextStyles.font14LightGrayRegular),
-          const Spacer(),
-          CircleAvatar(
-            radius: 15.r,
-            backgroundColor: Colors.grey.shade100,
-            child: Icon(Icons.arrow_forward_rounded, size: 14.sp),
-          ),
-        ],
-      ),
+    return Row(
+      children: [
+        CircleAvatar(
+          backgroundColor: color,
+          child: Icon(icon, color: AppColors.deepGreen),
+        ),
+        horizontalSpace(3.w),
+        Text(text, style: TextStyles.font14LightGrayRegular),
+        const Spacer(),
+        CircleAvatar(
+          radius: 15.r,
+          backgroundColor: Colors.grey.shade100,
+          child: Icon(Icons.arrow_forward_rounded, size: 14.sp),
+        ),
+      ],
     );
   }
 }

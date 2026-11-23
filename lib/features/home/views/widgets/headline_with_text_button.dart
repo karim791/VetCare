@@ -4,10 +4,12 @@ import 'package:vetcare/core/utils/themes/text_styles.dart';
 class HeadlineWithTextButton extends StatelessWidget {
   final String headline;
   final String? buttonText;
+  final VoidCallback? onTap;
   const HeadlineWithTextButton({
     super.key,
     required this.headline,
     this.buttonText,
+    this.onTap,
   });
 
   @override
@@ -16,7 +18,12 @@ class HeadlineWithTextButton extends StatelessWidget {
       children: [
         Text(headline, style: TextStyles.font20DarkGreenSemiBold),
         const Spacer(),
-        if(buttonText!=null)...[TextButton(onPressed: (){}, child: Text(buttonText!,style: TextStyles.font14LightGrayRegular,))]
+        if (buttonText != null) ...[
+          TextButton(
+            onPressed: onTap,
+            child: Text(buttonText!, style: TextStyles.font14GreenBold),
+          ),
+        ],
       ],
     );
   }
