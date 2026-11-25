@@ -4,7 +4,6 @@ import 'package:vetcare/core/helpers/spacing.dart';
 import 'package:vetcare/features/home/views/widgets/headline_with_text_button.dart';
 import 'package:vetcare/features/home/views/widgets/home_top_bar.dart';
 import 'package:vetcare/features/home/views/widgets/pet_container.dart';
-
 import '../widgets/appointment_container.dart';
 import '../widgets/clinics_carousel.dart';
 import '../widgets/services_grid_items.dart';
