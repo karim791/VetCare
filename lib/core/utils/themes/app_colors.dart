@@ -10,5 +10,7 @@ class AppColors {
   static const Color darkCharcoal = Color(0xFF243333);
   static const Color mutedGrey = Color(0xFF7B8787);
   static const Color lightGrey = Color(0xFF6D827F);
+  static const Color lighterGrey = Color(0xFFF5F5F5);
   static const Color textFieldBorder = Color(0xFFE6EEEB);
+  static const Color lightGreen = Color(0xFFDDF3EE);
 }

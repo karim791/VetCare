@@ -24,7 +24,7 @@ class VetCareApp extends StatelessWidget {
               scaffoldBackgroundColor: AppColors.background,
             ),
             title: 'VetCare',
-            initialRoute: AppRoutes.onBoardingPage,
+            initialRoute: AppRoutes.bottomNav,
             onGenerateRoute: appRouter.onGenerateRoutes,
           );
         },
