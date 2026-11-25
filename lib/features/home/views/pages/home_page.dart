@@ -6,6 +6,7 @@ import 'package:vetcare/features/home/views/widgets/home_top_bar.dart';
 import 'package:vetcare/features/home/views/widgets/pet_container.dart';
 
 import '../widgets/appointment_container.dart';
+import '../widgets/clinics_carousel.dart';
 import '../widgets/services_grid_items.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,20 +23,26 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 HomeTopBar(),
-                verticalSpace(20.h),
+                verticalSpace(16.h),
                 PetContainer(),
-                verticalSpace(20.h),
+                verticalSpace(16.h),
                 HeadlineWithTextButton(headline: 'What do you need?'),
                 verticalSpace(4.h),
                 ServicesGridItems(),
-                verticalSpace(20.h),
+                verticalSpace(16.h),
                 HeadlineWithTextButton(
                   headline: 'Next appointment',
                   buttonText: 'View all',
                 ),
                 verticalSpace(4.h),
                 AppointmentContainer(),
-                verticalSpace(20.h),
+                verticalSpace(16.h),
+                HeadlineWithTextButton(
+                  headline: 'Clinics list',
+                  buttonText: 'See more',
+                ),
+                verticalSpace(4.h),
+                ClinicsCarousel(),
               ],
             ),
           ),

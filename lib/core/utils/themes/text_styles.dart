@@ -94,14 +94,19 @@ class TextStyles {
     color: Colors.black,
     fontWeight: FontWeightHelper.medium,
   );
-  static TextStyle font14GreenBold = TextStyle(
+  static TextStyle font14DeepGreenBold = TextStyle(
     fontSize: 14.sp,
-    color: Colors.green,
+    color: AppColors.deepGreen,
     fontWeight: FontWeightHelper.bold,
   );
   static TextStyle font12GreenRegular = TextStyle(
     fontSize: 12.sp,
     color: Colors.green,
     fontWeight: FontWeightHelper.regular,
+  );
+  static TextStyle font12DeepGreenBold = TextStyle(
+    fontSize: 12.sp,
+    color: AppColors.deepGreen,
+    fontWeight: FontWeightHelper.bold,
   );
 }

@@ -21,7 +21,7 @@ class HeadlineWithTextButton extends StatelessWidget {
         if (buttonText != null) ...[
           TextButton(
             onPressed: onTap,
-            child: Text(buttonText!, style: TextStyles.font14GreenBold),
+            child: Text(buttonText!, style: TextStyles.font14DeepGreenBold),
           ),
         ],
       ],

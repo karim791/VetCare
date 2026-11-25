@@ -31,7 +31,7 @@ class ServicesGridItems extends StatelessWidget {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 10,
+        mainAxisSpacing: 5,
         crossAxisSpacing: 10,
         mainAxisExtent: 90.h,
       ),
