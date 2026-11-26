@@ -13,8 +13,9 @@ void main() async {
     url: AppConstant.supabaseUrl,
     publishableKey: AppConstant.publishableKey,
   );
-  final supabaseClient = Supabase.instance.client;
-  setupGetIt(supabaseClient);
+  final supabase = Supabase.instance.client;
+  
+  setupGetIt(supabase);
 
   runApp(VetCareApp(appRouter: AppRouter()));
 }

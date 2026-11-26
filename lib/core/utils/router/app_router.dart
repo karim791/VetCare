@@ -28,14 +28,16 @@ class AppRouter {
       case AppRoutes.signUpPage:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) =>getIt<AuthCubit>(),
-            child:const SignUpPage(),
+            create: (context) => getIt<AuthCubit>(),
+            child: const SignUpPage(),
           ),
         );
       case AppRoutes.bottomNav:
         return MaterialPageRoute(builder: (_) => BottomNavBar());
       case AppRoutes.homePage:
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(
+          builder: (_) => const HomePage(),
+        );
       case AppRoutes.profilePage:
         return MaterialPageRoute(builder: (_) => ProfilePage());
       case AppRoutes.inboxPage:

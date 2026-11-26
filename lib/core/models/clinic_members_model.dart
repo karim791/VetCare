@@ -20,8 +20,8 @@ class ClinicMembersModel {
   
   });
 
-  factory ClinicMembersModel.fromMap(Map<String, dynamic> json) =>
+  factory ClinicMembersModel.fromJson(Map<String, dynamic> json) =>
       _$ClinicMembersModelFromJson(json);
 
-  Map<String, dynamic> toMap() => _$ClinicMembersModelToJson(this);
+  Map<String, dynamic> toJson() => _$ClinicMembersModelToJson(this);
 }

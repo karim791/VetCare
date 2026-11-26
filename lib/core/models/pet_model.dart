@@ -33,14 +33,14 @@ class PetModel {
     this.ownerId,
   });
 
-  factory PetModel.fromMap(Map<String, dynamic> map) =>
+  factory PetModel.fromJson(Map<String, dynamic> map) =>
       _$PetModelFromJson(map);
 
-  Map<String, dynamic> toMap() => _$PetModelToJson(this);
+  Map<String, dynamic> toJson() => _$PetModelToJson(this);
 
 
   Map<String, dynamic> toInsertMap() {
-    return toMap()
+    return toJson()
       ..remove('id')
       ..remove('created_at');
   }

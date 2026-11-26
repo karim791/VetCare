@@ -114,15 +114,15 @@ class _TextFieldsWithButtonState extends State<TextFieldsWithButton> {
                 },
                 loginsuccess: () {
                   context.pop();
-                  context.pushAndRemoveUntil(AppRoutes.homePage);
+                  context.pushAndRemoveUntil(AppRoutes.bottomNav);
                 },
-                loginFailure: (message) {
+                loginFailure: (error) {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
                       icon: Icon(Icons.error, color: Colors.red, size: 32.h),
                       content: Text(
-                        message,
+                        error.message,
                         style: TextStyles.font14DarkGreenMedium,
                       ),
                       actions: [

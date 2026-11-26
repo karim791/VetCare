@@ -211,15 +211,15 @@ class _SignUpTextFieldsWithButtonState
                 },
                 signUpSuccess: () {
                   context.pop();
-                  context.pushAndRemoveUntil(AppRoutes.homePage);
+                  context.pushAndRemoveUntil(AppRoutes.bottomNav);
                 },
-                signUpFailure: (message) {
+                signUpFailure: (error) {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
                       icon: Icon(Icons.error, color: Colors.red, size: 32.h),
                       content: Text(
-                        message,
+                        error.message,
                         style: TextStyles.font14DarkGreenMedium,
                       ),
                       actions: [

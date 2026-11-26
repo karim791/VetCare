@@ -29,8 +29,8 @@ class AppointmentSlotModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   DateTime get endsAt => startsAt.add(const Duration(minutes: 30));
 
-  factory AppointmentSlotModel.fromMap(Map<String, dynamic> json) =>
+  factory AppointmentSlotModel.fromJson(Map<String, dynamic> json) =>
       _$AppointmentSlotModelFromJson(json);
 
-  Map<String, dynamic> toMap() => _$AppointmentSlotModelToJson(this);
+  Map<String, dynamic> toJson() => _$AppointmentSlotModelToJson(this);
 }
