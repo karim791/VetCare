@@ -56,7 +56,7 @@ extension HomeStatePatterns on HomeState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( HomeLoading value)?  loading,TResult Function( PetLoaded value)?  petLoaded,TResult Function( PetLoadedFailure value)?  petLoadedFailure,TResult Function( ClinicsLoaded value)?  clinicsLoaded,TResult Function( ClinicsLoadedFailure value)?  clinicsLoadedFailure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( HomeLoading value)?  loading,TResult Function( PetLoaded value)?  petLoaded,TResult Function( PetLoadedFailure value)?  petLoadedFailure,TResult Function( ClinicsLoaded value)?  clinicsLoaded,TResult Function( ClinicsLoadedFailure value)?  clinicsLoadedFailure,TResult Function( AppointmentsLoaded value)?  appointmentsLoaded,TResult Function( AppointmentsLoadedFailure value)?  appointmentsLoadedFailure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -65,7 +65,9 @@ return loading(_that);case PetLoaded() when petLoaded != null:
 return petLoaded(_that);case PetLoadedFailure() when petLoadedFailure != null:
 return petLoadedFailure(_that);case ClinicsLoaded() when clinicsLoaded != null:
 return clinicsLoaded(_that);case ClinicsLoadedFailure() when clinicsLoadedFailure != null:
-return clinicsLoadedFailure(_that);case _:
+return clinicsLoadedFailure(_that);case AppointmentsLoaded() when appointmentsLoaded != null:
+return appointmentsLoaded(_that);case AppointmentsLoadedFailure() when appointmentsLoadedFailure != null:
+return appointmentsLoadedFailure(_that);case _:
   return orElse();
 
 }
@@ -83,7 +85,7 @@ return clinicsLoadedFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( HomeLoading value)  loading,required TResult Function( PetLoaded value)  petLoaded,required TResult Function( PetLoadedFailure value)  petLoadedFailure,required TResult Function( ClinicsLoaded value)  clinicsLoaded,required TResult Function( ClinicsLoadedFailure value)  clinicsLoadedFailure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( HomeLoading value)  loading,required TResult Function( PetLoaded value)  petLoaded,required TResult Function( PetLoadedFailure value)  petLoadedFailure,required TResult Function( ClinicsLoaded value)  clinicsLoaded,required TResult Function( ClinicsLoadedFailure value)  clinicsLoadedFailure,required TResult Function( AppointmentsLoaded value)  appointmentsLoaded,required TResult Function( AppointmentsLoadedFailure value)  appointmentsLoadedFailure,}){
 final _that = this;
 switch (_that) {
 case _Initial():
@@ -92,7 +94,9 @@ return loading(_that);case PetLoaded():
 return petLoaded(_that);case PetLoadedFailure():
 return petLoadedFailure(_that);case ClinicsLoaded():
 return clinicsLoaded(_that);case ClinicsLoadedFailure():
-return clinicsLoadedFailure(_that);case _:
+return clinicsLoadedFailure(_that);case AppointmentsLoaded():
+return appointmentsLoaded(_that);case AppointmentsLoadedFailure():
+return appointmentsLoadedFailure(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -109,7 +113,7 @@ return clinicsLoadedFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( HomeLoading value)?  loading,TResult? Function( PetLoaded value)?  petLoaded,TResult? Function( PetLoadedFailure value)?  petLoadedFailure,TResult? Function( ClinicsLoaded value)?  clinicsLoaded,TResult? Function( ClinicsLoadedFailure value)?  clinicsLoadedFailure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( HomeLoading value)?  loading,TResult? Function( PetLoaded value)?  petLoaded,TResult? Function( PetLoadedFailure value)?  petLoadedFailure,TResult? Function( ClinicsLoaded value)?  clinicsLoaded,TResult? Function( ClinicsLoadedFailure value)?  clinicsLoadedFailure,TResult? Function( AppointmentsLoaded value)?  appointmentsLoaded,TResult? Function( AppointmentsLoadedFailure value)?  appointmentsLoadedFailure,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -118,7 +122,9 @@ return loading(_that);case PetLoaded() when petLoaded != null:
 return petLoaded(_that);case PetLoadedFailure() when petLoadedFailure != null:
 return petLoadedFailure(_that);case ClinicsLoaded() when clinicsLoaded != null:
 return clinicsLoaded(_that);case ClinicsLoadedFailure() when clinicsLoadedFailure != null:
-return clinicsLoadedFailure(_that);case _:
+return clinicsLoadedFailure(_that);case AppointmentsLoaded() when appointmentsLoaded != null:
+return appointmentsLoaded(_that);case AppointmentsLoadedFailure() when appointmentsLoadedFailure != null:
+return appointmentsLoadedFailure(_that);case _:
   return null;
 
 }
@@ -135,7 +141,7 @@ return clinicsLoadedFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<PetModel>? petList)?  petLoaded,TResult Function( SupabaseErrorHandler error)?  petLoadedFailure,TResult Function( List<ClinicModel>? clinicsList)?  clinicsLoaded,TResult Function( SupabaseErrorHandler error)?  clinicsLoadedFailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<PetModel>? petList)?  petLoaded,TResult Function( SupabaseErrorHandler error)?  petLoadedFailure,TResult Function( List<ClinicModel>? clinicsList)?  clinicsLoaded,TResult Function( SupabaseErrorHandler error)?  clinicsLoadedFailure,TResult Function( List<AppointmentModel>? appointments)?  appointmentsLoaded,TResult Function( SupabaseErrorHandler error)?  appointmentsLoadedFailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case HomeLoading() when loading != null:
@@ -143,7 +149,9 @@ return loading();case PetLoaded() when petLoaded != null:
 return petLoaded(_that.petList);case PetLoadedFailure() when petLoadedFailure != null:
 return petLoadedFailure(_that.error);case ClinicsLoaded() when clinicsLoaded != null:
 return clinicsLoaded(_that.clinicsList);case ClinicsLoadedFailure() when clinicsLoadedFailure != null:
-return clinicsLoadedFailure(_that.error);case _:
+return clinicsLoadedFailure(_that.error);case AppointmentsLoaded() when appointmentsLoaded != null:
+return appointmentsLoaded(_that.appointments);case AppointmentsLoadedFailure() when appointmentsLoadedFailure != null:
+return appointmentsLoadedFailure(_that.error);case _:
   return orElse();
 
 }
@@ -161,7 +169,7 @@ return clinicsLoadedFailure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<PetModel>? petList)  petLoaded,required TResult Function( SupabaseErrorHandler error)  petLoadedFailure,required TResult Function( List<ClinicModel>? clinicsList)  clinicsLoaded,required TResult Function( SupabaseErrorHandler error)  clinicsLoadedFailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<PetModel>? petList)  petLoaded,required TResult Function( SupabaseErrorHandler error)  petLoadedFailure,required TResult Function( List<ClinicModel>? clinicsList)  clinicsLoaded,required TResult Function( SupabaseErrorHandler error)  clinicsLoadedFailure,required TResult Function( List<AppointmentModel>? appointments)  appointmentsLoaded,required TResult Function( SupabaseErrorHandler error)  appointmentsLoadedFailure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case HomeLoading():
@@ -169,7 +177,9 @@ return loading();case PetLoaded():
 return petLoaded(_that.petList);case PetLoadedFailure():
 return petLoadedFailure(_that.error);case ClinicsLoaded():
 return clinicsLoaded(_that.clinicsList);case ClinicsLoadedFailure():
-return clinicsLoadedFailure(_that.error);case _:
+return clinicsLoadedFailure(_that.error);case AppointmentsLoaded():
+return appointmentsLoaded(_that.appointments);case AppointmentsLoadedFailure():
+return appointmentsLoadedFailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -186,7 +196,7 @@ return clinicsLoadedFailure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<PetModel>? petList)?  petLoaded,TResult? Function( SupabaseErrorHandler error)?  petLoadedFailure,TResult? Function( List<ClinicModel>? clinicsList)?  clinicsLoaded,TResult? Function( SupabaseErrorHandler error)?  clinicsLoadedFailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<PetModel>? petList)?  petLoaded,TResult? Function( SupabaseErrorHandler error)?  petLoadedFailure,TResult? Function( List<ClinicModel>? clinicsList)?  clinicsLoaded,TResult? Function( SupabaseErrorHandler error)?  clinicsLoadedFailure,TResult? Function( List<AppointmentModel>? appointments)?  appointmentsLoaded,TResult? Function( SupabaseErrorHandler error)?  appointmentsLoadedFailure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case HomeLoading() when loading != null:
@@ -194,7 +204,9 @@ return loading();case PetLoaded() when petLoaded != null:
 return petLoaded(_that.petList);case PetLoadedFailure() when petLoadedFailure != null:
 return petLoadedFailure(_that.error);case ClinicsLoaded() when clinicsLoaded != null:
 return clinicsLoaded(_that.clinicsList);case ClinicsLoadedFailure() when clinicsLoadedFailure != null:
-return clinicsLoadedFailure(_that.error);case _:
+return clinicsLoadedFailure(_that.error);case AppointmentsLoaded() when appointmentsLoaded != null:
+return appointmentsLoaded(_that.appointments);case AppointmentsLoadedFailure() when appointmentsLoadedFailure != null:
+return appointmentsLoadedFailure(_that.error);case _:
   return null;
 
 }
@@ -546,6 +558,150 @@ class _$ClinicsLoadedFailureCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(ClinicsLoadedFailure(
+null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as SupabaseErrorHandler,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class AppointmentsLoaded implements HomeState {
+  const AppointmentsLoaded( List<AppointmentModel>? appointments): _appointments = appointments;
+  
+
+ final  List<AppointmentModel>? _appointments;
+ List<AppointmentModel>? get appointments {
+  final value = _appointments;
+  if (value == null) return null;
+  if (_appointments is EqualUnmodifiableListView) return _appointments;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AppointmentsLoadedCopyWith<AppointmentsLoaded> get copyWith => _$AppointmentsLoadedCopyWithImpl<AppointmentsLoaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is AppointmentsLoaded&&const DeepCollectionEquality().equals(other.appointments, _appointments));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_appointments));
+}
+
+@override
+String toString() {
+    return 'HomeState.appointmentsLoaded(appointments: $appointments)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $AppointmentsLoadedCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $AppointmentsLoadedCopyWith(AppointmentsLoaded value, $Res Function(AppointmentsLoaded) _then) = _$AppointmentsLoadedCopyWithImpl;
+@useResult
+$Res call({
+ List<AppointmentModel>? appointments
+});
+
+
+
+
+}
+/// @nodoc
+class _$AppointmentsLoadedCopyWithImpl<$Res>
+    implements $AppointmentsLoadedCopyWith<$Res> {
+  _$AppointmentsLoadedCopyWithImpl(this._self, this._then);
+
+  final AppointmentsLoaded _self;
+  final $Res Function(AppointmentsLoaded) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? appointments = freezed,}) {
+  return _then(AppointmentsLoaded(
+freezed == appointments ? _self._appointments : appointments // ignore: cast_nullable_to_non_nullable
+as List<AppointmentModel>?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class AppointmentsLoadedFailure implements HomeState {
+  const AppointmentsLoadedFailure(this.error);
+  
+
+ final  SupabaseErrorHandler error;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AppointmentsLoadedFailureCopyWith<AppointmentsLoadedFailure> get copyWith => _$AppointmentsLoadedFailureCopyWithImpl<AppointmentsLoadedFailure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is AppointmentsLoadedFailure&&(identical(other.error, error) || other.error == error));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,error);
+}
+
+@override
+String toString() {
+    return 'HomeState.appointmentsLoadedFailure(error: $error)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $AppointmentsLoadedFailureCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $AppointmentsLoadedFailureCopyWith(AppointmentsLoadedFailure value, $Res Function(AppointmentsLoadedFailure) _then) = _$AppointmentsLoadedFailureCopyWithImpl;
+@useResult
+$Res call({
+ SupabaseErrorHandler error
+});
+
+
+
+
+}
+/// @nodoc
+class _$AppointmentsLoadedFailureCopyWithImpl<$Res>
+    implements $AppointmentsLoadedFailureCopyWith<$Res> {
+  _$AppointmentsLoadedFailureCopyWithImpl(this._self, this._then);
+
+  final AppointmentsLoadedFailure _self;
+  final $Res Function(AppointmentsLoadedFailure) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
+  return _then(AppointmentsLoadedFailure(
 null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as SupabaseErrorHandler,
   ));

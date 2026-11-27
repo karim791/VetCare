@@ -26,12 +26,14 @@ class PetContainer extends StatelessWidget {
               ),
               petLoaded: (petList) {
                 if (petList == null || petList.isEmpty) {
-                  return InkWell(
-                    onTap: () {},
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => Container(
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: () {
+                        
+                      },
+                      child: Container(
                         height: 130.h,
                         width: double.infinity,
                         padding: EdgeInsets.all(12),
@@ -81,19 +83,21 @@ class PetContainer extends StatelessWidget {
                           ],
                         ),
                       ),
-                      itemCount: 1,
                     ),
+                    itemCount: 1,
                   );
                 } else {
-                  return InkWell(
-                    onTap: () {},
-                    child: SizedBox(
-                      height: 130,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          final pet = petList[index];
-                          return Container(
+                  return SizedBox(
+                    height: 130,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        final pet = petList[index];
+                        return InkWell(
+                          onTap: () {
+                            
+                          },
+                          child: Container(
                             height: 130.h,
                             width: 355.w,
                             padding: EdgeInsets.all(12),
@@ -169,12 +173,12 @@ class PetContainer extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          );
-                        },
-                        separatorBuilder: (context, index) =>
-                            horizontalSpace(8.w),
-                        itemCount: petList.length,
-                      ),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          horizontalSpace(8.w),
+                      itemCount: petList.length,
                     ),
                   );
                 }
@@ -183,7 +187,7 @@ class PetContainer extends StatelessWidget {
                 return Center(child: Text(error.message));
               },
             ) ??
-            SizedBox.shrink();
+            const SizedBox.shrink();
       },
     );
   }

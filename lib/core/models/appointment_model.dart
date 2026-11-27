@@ -27,8 +27,7 @@ class AppointmentModel {
 
   final AppointmentStatus status;
 
-  @JsonKey(name: 'created_at')
-  final DateTime createdAt;
+  final DateTime appointment;
 
   const AppointmentModel({
     required this.id,
@@ -36,7 +35,7 @@ class AppointmentModel {
     required this.slotId,
     this.reason,
     required this.status,
-    required this.createdAt,
+    required this.appointment,
   });
 
   factory AppointmentModel.fromJson(Map<String, dynamic> json) =>

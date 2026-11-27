@@ -22,7 +22,8 @@ class HomePage extends StatelessWidget {
       create: (_) {
         final cubit = getIt<HomeCubit>();
         cubit.fetchPets();
-
+        cubit.fetchAppointments();
+        cubit.fetchClinics();
         return cubit;
       },
       child: Scaffold(

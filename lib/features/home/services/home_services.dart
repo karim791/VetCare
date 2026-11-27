@@ -28,7 +28,7 @@ class HomeServicesImpl implements HomeServices {
   Future<ApiResult<List<AppointmentModel>>> fetchAppointments() async {
     try {
       final reponse = await supabaseDatabaseServices.fetchRows(
-        table: 'appointment',
+        table: 'appointments',
         builder: (Map<String, dynamic> data, String id) =>
             AppointmentModel.fromJson(data),
       );
@@ -55,12 +55,10 @@ class HomeServicesImpl implements HomeServices {
   @override
   Future<ApiResult<List<PetModel>>> fetchPetList() async {
     try {
-    
       final reponse = await supabaseDatabaseServices.fetchRows(
         table: 'pets',
         builder: (Map<String, dynamic> data, String id) =>
             PetModel.fromJson(data),
-      
       );
       return ApiResult.success(reponse);
     } catch (error, stackTrace) {

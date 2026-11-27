@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:vetcare/core/models/appointment_model.dart';
 import 'package:vetcare/core/services/supabase_error_handler/supabase_error_handler.dart';
 
 import '../../../core/models/clinic_model.dart';
@@ -13,9 +14,20 @@ class HomeState with _$HomeState {
 
   //Pets states
   const factory HomeState.petLoaded(List<PetModel>? petList) = PetLoaded;
-  const factory HomeState.petLoadedFailure(SupabaseErrorHandler error) = PetLoadedFailure;
+  const factory HomeState.petLoadedFailure(SupabaseErrorHandler error) =
+      PetLoadedFailure;
 
   //clinics states
-  const factory HomeState.clinicsLoaded(List<ClinicModel>? clinicsList) = ClinicsLoaded;
-  const factory HomeState.clinicsLoadedFailure(SupabaseErrorHandler error) = ClinicsLoadedFailure;
+  const factory HomeState.clinicsLoaded(List<ClinicModel>? clinicsList) =
+      ClinicsLoaded;
+  const factory HomeState.clinicsLoadedFailure(SupabaseErrorHandler error) =
+      ClinicsLoadedFailure;
+
+  //Appointments states
+  const factory HomeState.appointmentsLoaded(
+    List<AppointmentModel>? appointments,
+  ) = AppointmentsLoaded;
+  const factory HomeState.appointmentsLoadedFailure(SupabaseErrorHandler error) =
+      AppointmentsLoadedFailure;
+
 }

@@ -13,7 +13,7 @@ AppointmentModel _$AppointmentModelFromJson(Map<String, dynamic> json) =>
       slotId: json['slot_id'] as String,
       reason: json['reason'] as String?,
       status: $enumDecode(_$AppointmentStatusEnumMap, json['status']),
-      createdAt: DateTime.parse(json['created_at'] as String),
+      appointment: DateTime.parse(json['appointment'] as String),
     );
 
 Map<String, dynamic> _$AppointmentModelToJson(AppointmentModel instance) =>
@@ -23,7 +23,7 @@ Map<String, dynamic> _$AppointmentModelToJson(AppointmentModel instance) =>
       'slot_id': instance.slotId,
       'reason': instance.reason,
       'status': _$AppointmentStatusEnumMap[instance.status]!,
-      'created_at': instance.createdAt.toIso8601String(),
+      'appointment': instance.appointment.toIso8601String(),
     };
 
 const _$AppointmentStatusEnumMap = {

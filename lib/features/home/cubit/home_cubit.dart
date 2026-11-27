@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vetcare/features/home/cubit/home_state.dart';
 
@@ -30,6 +31,16 @@ class HomeCubit extends Cubit<HomeState> {
       },
     );
   }
+   Future<void> fetchAppointments() async {
+    final appointments = await _homeServices.fetchAppointments();
+    appointments.when(
+      success: (appointments) {
+        emit(HomeState.appointmentsLoaded(appointments));
+
+      },
+      failure: (error) => emit(HomeState.appointmentsLoadedFailure(error)),
+    );
+  }
 
   Future<void> fetchClinics() async {
     final clinicsList = await _homeServices.fetchClinicsList();
@@ -38,4 +49,6 @@ class HomeCubit extends Cubit<HomeState> {
       failure: (error) => emit(HomeState.clinicsLoadedFailure(error)),
     );
   }
+
+ 
 }
