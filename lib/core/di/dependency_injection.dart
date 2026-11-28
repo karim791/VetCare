@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:vetcare/core/services/supabase_database_services.dart';
 import 'package:vetcare/features/auth/cubit/auth_cubit.dart';
@@ -9,6 +10,10 @@ import 'package:vetcare/features/home/services/home_services.dart';
 final getIt = GetIt.instance;
 
 void setupGetIt(SupabaseClient supabaseClient) {
+  // PersistentTapController
+  getIt.registerLazySingleton<PersistentTabController>(
+  () => PersistentTabController(initialIndex: 0),
+);
   // Supabase Client
   getIt.registerSingleton<SupabaseClient>(supabaseClient);
 

@@ -20,62 +20,68 @@ class ClinicsCarousel extends StatelessWidget {
             current is ClinicsLoaded || current is ClinicsLoadedFailure,
         builder: (context, state) {
           return state.whenOrNull(
-                clinicsLoaded: (clinics) => ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) => horizontalSpace(8.w),
-                  //TODO: clinics might be null
-                  itemCount: clinics!.length,
-                  itemBuilder: (context, index) {
-                    final clinic=clinics[index];
-                    return InkWell(
-                      onTap: () {
-                        
-                      },
-                      child: Container(
-                        height: 150.h,
-                        width: 200.w,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16.r),
-                          border: Border.all(color: Colors.grey.shade200),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadiusGeometry.only(
-                                  topLeft: Radius.circular(16.r),
-                                  topRight: Radius.circular(16.r),
-                                ),
-                                child: CachedNetworkImage(
-                                  imageUrl:clinic.image! ,
-                                  fit: BoxFit.cover,
-                                  width: double.infinity,
-                                ),
-                              ),
+                clinicsLoaded: (clinics) {
+                  if (clinics == null || clinics.isEmpty) {
+                    return Center(child: Text('Something went wrong. contact the developer team'));
+                  } else {
+                    return ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      separatorBuilder: (context, index) =>
+                          horizontalSpace(8.w),
+                      itemCount: clinics.length,
+                      itemBuilder: (context, index) {
+                        final clinic = clinics[index];
+                        return InkWell(
+                          onTap: () {
+                            //TODO: fix this when build the clinics profiles
+                          },
+                          child: Container(
+                            height: 150.h,
+                            width: 200.w,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16.r),
+                              border: Border.all(color: Colors.grey.shade200),
                             ),
-                            Column(
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                verticalSpace(4.h),
-                                Text(
-                                 clinic.name,
-                                  style: TextStyles.font14DarkGreenMedium,
+                                Expanded(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadiusGeometry.only(
+                                      topLeft: Radius.circular(16.r),
+                                      topRight: Radius.circular(16.r),
+                                    ),
+                                    child: CachedNetworkImage(
+                                      imageUrl: clinic.image!,
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                    ),
+                                  ),
                                 ),
-                                verticalSpace(4.h),
-                                Text(
-                                  'Open until 8:00 PM',
-                                  style: TextStyles.font12DeepGreenBold,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    verticalSpace(4.h),
+                                    Text(
+                                      clinic.name,
+                                      style: TextStyles.font14DarkGreenMedium,
+                                    ),
+                                    verticalSpace(4.h),
+                                    Text(
+                                      'Open until 8:00 PM',
+                                      style: TextStyles.font12DeepGreenBold,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
+                          ),
+                        );
+                      },
                     );
-                  },
-                ),
+                  }
+                },
                 clinicsLoadedFailure: (error) {
                   return Center(child: Text(error.message));
                 },

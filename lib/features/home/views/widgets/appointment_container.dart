@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:vetcare/core/utils/themes/app_colors.dart';
 import 'package:vetcare/core/utils/themes/text_styles.dart';
 
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../cubit/home_cubit.dart';
 import '../../cubit/home_state.dart';
@@ -92,7 +94,9 @@ class AppointmentContainer extends StatelessWidget {
                         ).format(appointment.appointment).toUpperCase();
                         final status = appointment.status.name;
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                             getIt<PersistentTabController>().jumpToTab(3);
+                          },
                           child: Container(
                             height: 110.h,
                             width: 355.w,

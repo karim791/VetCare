@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:vetcare/core/helpers/spacing.dart';
 import 'package:vetcare/features/home/views/widgets/headline_with_text_button.dart';
 import 'package:vetcare/features/home/views/widgets/home_top_bar.dart';
@@ -45,6 +46,7 @@ class HomePage extends StatelessWidget {
                   HeadlineWithTextButton(
                     headline: 'Next appointment',
                     buttonText: 'View all',
+                    onTap: () => getIt<PersistentTabController>().jumpToTab(3),
                   ),
                   verticalSpace(4.h),
                   AppointmentContainer(),
