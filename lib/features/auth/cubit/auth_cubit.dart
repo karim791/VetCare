@@ -32,13 +32,11 @@ class AuthCubit extends Cubit<AuthState> {
           );
           setUserDataResponse.when(
             success: (_) => emit(const AuthState.signUpSuccess()),
-            failure: (error) => emit(AuthState.signUpFailure(error.message)),
+            failure: (error) => emit(AuthState.signUpFailure(error)),
           );
-        } else {
-          emit(const AuthState.signUpFailure('User ID is null after sign-up.'));
-        }
+        } 
       },
-      failure: (error) => emit(AuthState.signUpFailure(error.message)),
+      failure: (error) => emit(AuthState.signUpFailure(error)),
     );
   }
 
@@ -53,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
       success: (signInResponse) {
         emit(AuthState.loginsuccess());
       },
-      failure: (error) => emit(AuthState.loginFailure(error.message)),
+      failure: (error) => emit(AuthState.loginFailure(error)),
     );
   }
 
@@ -65,7 +63,7 @@ class AuthCubit extends Cubit<AuthState> {
       success: (signOutResponse) {
         emit(AuthState.signOutSuccess());
       },
-      failure: (error) => emit(AuthState.signOutFailure(error.message)),
+      failure: (error) => emit(AuthState.signOutFailure(error)),
     );
   }
 

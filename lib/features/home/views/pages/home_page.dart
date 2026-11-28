@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:vetcare/core/helpers/spacing.dart';
 import 'package:vetcare/features/home/views/widgets/headline_with_text_button.dart';
 import 'package:vetcare/features/home/views/widgets/home_top_bar.dart';
 import 'package:vetcare/features/home/views/widgets/pet_container.dart';
 
+import '../../../../core/di/dependency_injection.dart';
+import '../../cubit/home_cubit.dart';
 import '../widgets/appointment_container.dart';
 import '../widgets/clinics_carousel.dart';
 import '../widgets/services_grid_items.dart';
@@ -14,36 +18,47 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          margin: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 28.h),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                HomeTopBar(),
-                verticalSpace(16.h),
-                PetContainer(),
-                verticalSpace(16.h),
-                HeadlineWithTextButton(headline: 'What do you need?'),
-                verticalSpace(4.h),
-                ServicesGridItems(),
-                verticalSpace(16.h),
-                HeadlineWithTextButton(
-                  headline: 'Next appointment',
-                  buttonText: 'View all',
-                ),
-                verticalSpace(4.h),
-                AppointmentContainer(),
-                verticalSpace(16.h),
-                HeadlineWithTextButton(
-                  headline: 'Clinics list',
-                  buttonText: 'See more',
-                ),
-                verticalSpace(4.h),
-                ClinicsCarousel(),
-              ],
+    return BlocProvider(
+      lazy: false,
+      create: (_) {
+        final cubit = getIt<HomeCubit>();
+        cubit.fetchPets();
+        cubit.fetchAppointments();
+        cubit.fetchClinics();
+        return cubit;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Container(
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 28.h),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  HomeTopBar(),
+                  verticalSpace(16.h),
+                  PetContainer(),
+                  verticalSpace(16.h),
+                  HeadlineWithTextButton(headline: 'What do you need?'),
+                  verticalSpace(4.h),
+                  ServicesGridItems(),
+                  verticalSpace(16.h),
+                  HeadlineWithTextButton(
+                    headline: 'Next appointment',
+                    buttonText: 'View all',
+                    onTap: () => getIt<PersistentTabController>().jumpToTab(3),
+                  ),
+                  verticalSpace(4.h),
+                  AppointmentContainer(),
+                  verticalSpace(16.h),
+                  HeadlineWithTextButton(
+                    headline: 'Clinics list',
+                    buttonText: 'See more',
+                  ),
+                  verticalSpace(4.h),
+                  ClinicsCarousel(),
+                ],
+              ),
             ),
           ),
         ),

@@ -1,5 +1,9 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
-  }
+  },
+  "files.exclude": {
+        "**/*.g.dart": true,
+        "**/*.freezed.dart": true
+    }
 }

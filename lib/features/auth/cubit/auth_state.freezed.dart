@@ -147,19 +147,19 @@ return signOutFailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loginLoading,TResult Function()?  loginsuccess,TResult Function( String message)?  loginFailure,TResult Function()?  signUpLoading,TResult Function()?  signUpSuccess,TResult Function( String message)?  signUpFailure,TResult Function()?  signOutLoading,TResult Function()?  signOutSuccess,TResult Function( String message)?  signOutFailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loginLoading,TResult Function()?  loginsuccess,TResult Function( SupabaseErrorHandler error)?  loginFailure,TResult Function()?  signUpLoading,TResult Function()?  signUpSuccess,TResult Function( SupabaseErrorHandler error)?  signUpFailure,TResult Function()?  signOutLoading,TResult Function()?  signOutSuccess,TResult Function( SupabaseErrorHandler error)?  signOutFailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AuthInitial() when initial != null:
 return initial();case LoginLoading() when loginLoading != null:
 return loginLoading();case LoginSuccess() when loginsuccess != null:
 return loginsuccess();case LoginFailure() when loginFailure != null:
-return loginFailure(_that.message);case SignUpLoading() when signUpLoading != null:
+return loginFailure(_that.error);case SignUpLoading() when signUpLoading != null:
 return signUpLoading();case SignUpSuccess() when signUpSuccess != null:
 return signUpSuccess();case SignUpFailure() when signUpFailure != null:
-return signUpFailure(_that.message);case SignOutLoading() when signOutLoading != null:
+return signUpFailure(_that.error);case SignOutLoading() when signOutLoading != null:
 return signOutLoading();case SignOutSuccess() when signOutSuccess != null:
 return signOutSuccess();case SignOutFailure() when signOutFailure != null:
-return signOutFailure(_that.message);case _:
+return signOutFailure(_that.error);case _:
   return orElse();
 
 }
@@ -177,19 +177,19 @@ return signOutFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loginLoading,required TResult Function()  loginsuccess,required TResult Function( String message)  loginFailure,required TResult Function()  signUpLoading,required TResult Function()  signUpSuccess,required TResult Function( String message)  signUpFailure,required TResult Function()  signOutLoading,required TResult Function()  signOutSuccess,required TResult Function( String message)  signOutFailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loginLoading,required TResult Function()  loginsuccess,required TResult Function( SupabaseErrorHandler error)  loginFailure,required TResult Function()  signUpLoading,required TResult Function()  signUpSuccess,required TResult Function( SupabaseErrorHandler error)  signUpFailure,required TResult Function()  signOutLoading,required TResult Function()  signOutSuccess,required TResult Function( SupabaseErrorHandler error)  signOutFailure,}) {final _that = this;
 switch (_that) {
 case _AuthInitial():
 return initial();case LoginLoading():
 return loginLoading();case LoginSuccess():
 return loginsuccess();case LoginFailure():
-return loginFailure(_that.message);case SignUpLoading():
+return loginFailure(_that.error);case SignUpLoading():
 return signUpLoading();case SignUpSuccess():
 return signUpSuccess();case SignUpFailure():
-return signUpFailure(_that.message);case SignOutLoading():
+return signUpFailure(_that.error);case SignOutLoading():
 return signOutLoading();case SignOutSuccess():
 return signOutSuccess();case SignOutFailure():
-return signOutFailure(_that.message);case _:
+return signOutFailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -206,19 +206,19 @@ return signOutFailure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loginLoading,TResult? Function()?  loginsuccess,TResult? Function( String message)?  loginFailure,TResult? Function()?  signUpLoading,TResult? Function()?  signUpSuccess,TResult? Function( String message)?  signUpFailure,TResult? Function()?  signOutLoading,TResult? Function()?  signOutSuccess,TResult? Function( String message)?  signOutFailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loginLoading,TResult? Function()?  loginsuccess,TResult? Function( SupabaseErrorHandler error)?  loginFailure,TResult? Function()?  signUpLoading,TResult? Function()?  signUpSuccess,TResult? Function( SupabaseErrorHandler error)?  signUpFailure,TResult? Function()?  signOutLoading,TResult? Function()?  signOutSuccess,TResult? Function( SupabaseErrorHandler error)?  signOutFailure,}) {final _that = this;
 switch (_that) {
 case _AuthInitial() when initial != null:
 return initial();case LoginLoading() when loginLoading != null:
 return loginLoading();case LoginSuccess() when loginsuccess != null:
 return loginsuccess();case LoginFailure() when loginFailure != null:
-return loginFailure(_that.message);case SignUpLoading() when signUpLoading != null:
+return loginFailure(_that.error);case SignUpLoading() when signUpLoading != null:
 return signUpLoading();case SignUpSuccess() when signUpSuccess != null:
 return signUpSuccess();case SignUpFailure() when signUpFailure != null:
-return signUpFailure(_that.message);case SignOutLoading() when signOutLoading != null:
+return signUpFailure(_that.error);case SignOutLoading() when signOutLoading != null:
 return signOutLoading();case SignOutSuccess() when signOutSuccess != null:
 return signOutSuccess();case SignOutFailure() when signOutFailure != null:
-return signOutFailure(_that.message);case _:
+return signOutFailure(_that.error);case _:
   return null;
 
 }
@@ -326,10 +326,10 @@ String toString() {
 
 
 class LoginFailure implements AuthState {
-  const LoginFailure(this.message);
+  const LoginFailure(this.error);
   
 
- final  String message;
+ final  SupabaseErrorHandler error;
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
@@ -341,18 +341,18 @@ $LoginFailureCopyWith<LoginFailure> get copyWith => _$LoginFailureCopyWithImpl<L
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginFailure&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginFailure&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,message);
+    return Object.hash(runtimeType,error);
 }
 
 @override
 String toString() {
-    return 'AuthState.loginFailure(message: $message)';
+    return 'AuthState.loginFailure(error: $error)';
 }
 
 
@@ -363,7 +363,7 @@ abstract mixin class $LoginFailureCopyWith<$Res> implements $AuthStateCopyWith<$
   factory $LoginFailureCopyWith(LoginFailure value, $Res Function(LoginFailure) _then) = _$LoginFailureCopyWithImpl;
 @useResult
 $Res call({
- String message
+ SupabaseErrorHandler error
 });
 
 
@@ -380,10 +380,10 @@ class _$LoginFailureCopyWithImpl<$Res>
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(LoginFailure(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as SupabaseErrorHandler,
   ));
 }
 
@@ -458,10 +458,10 @@ String toString() {
 
 
 class SignUpFailure implements AuthState {
-  const SignUpFailure(this.message);
+  const SignUpFailure(this.error);
   
 
- final  String message;
+ final  SupabaseErrorHandler error;
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
@@ -473,18 +473,18 @@ $SignUpFailureCopyWith<SignUpFailure> get copyWith => _$SignUpFailureCopyWithImp
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpFailure&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpFailure&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,message);
+    return Object.hash(runtimeType,error);
 }
 
 @override
 String toString() {
-    return 'AuthState.signUpFailure(message: $message)';
+    return 'AuthState.signUpFailure(error: $error)';
 }
 
 
@@ -495,7 +495,7 @@ abstract mixin class $SignUpFailureCopyWith<$Res> implements $AuthStateCopyWith<
   factory $SignUpFailureCopyWith(SignUpFailure value, $Res Function(SignUpFailure) _then) = _$SignUpFailureCopyWithImpl;
 @useResult
 $Res call({
- String message
+ SupabaseErrorHandler error
 });
 
 
@@ -512,10 +512,10 @@ class _$SignUpFailureCopyWithImpl<$Res>
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(SignUpFailure(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as SupabaseErrorHandler,
   ));
 }
 
@@ -590,10 +590,10 @@ String toString() {
 
 
 class SignOutFailure implements AuthState {
-  const SignOutFailure(this.message);
+  const SignOutFailure(this.error);
   
 
- final  String message;
+ final  SupabaseErrorHandler error;
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
@@ -605,18 +605,18 @@ $SignOutFailureCopyWith<SignOutFailure> get copyWith => _$SignOutFailureCopyWith
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is SignOutFailure&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SignOutFailure&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
 int get hashCode {
-    return Object.hash(runtimeType,message);
+    return Object.hash(runtimeType,error);
 }
 
 @override
 String toString() {
-    return 'AuthState.signOutFailure(message: $message)';
+    return 'AuthState.signOutFailure(error: $error)';
 }
 
 
@@ -627,7 +627,7 @@ abstract mixin class $SignOutFailureCopyWith<$Res> implements $AuthStateCopyWith
   factory $SignOutFailureCopyWith(SignOutFailure value, $Res Function(SignOutFailure) _then) = _$SignOutFailureCopyWithImpl;
 @useResult
 $Res call({
- String message
+ SupabaseErrorHandler error
 });
 
 
@@ -644,10 +644,10 @@ class _$SignOutFailureCopyWithImpl<$Res>
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(SignOutFailure(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as SupabaseErrorHandler,
   ));
 }
 

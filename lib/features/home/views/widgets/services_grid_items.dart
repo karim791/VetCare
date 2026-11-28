@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:vetcare/core/helpers/spacing.dart';
 import 'package:vetcare/core/utils/themes/app_colors.dart';
 
 import 'package:vetcare/core/utils/themes/text_styles.dart';
+
+import '../../../../core/di/dependency_injection.dart';
 
 class ServicesGridItems extends StatelessWidget {
   const new({super.key});
@@ -40,7 +43,24 @@ class ServicesGridItems extends StatelessWidget {
       itemCount: colors.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+           switch (items[index]) {
+             case 'Book a visit' :
+               getIt<PersistentTabController>().jumpToTab(3);
+               break;
+             case 'Find a clinic' :
+               //TODO: when build find clinics page
+               break;
+             case 'Chat with vet' :
+               getIt<PersistentTabController>().jumpToTab(1);          
+               break;
+             case 'Pet Shop' :
+               getIt<PersistentTabController>().jumpToTab(2);          
+               break;
+
+             default:
+           }
+          },
           child: Container(
             padding: EdgeInsets.all(2.h),
             decoration: BoxDecoration(
